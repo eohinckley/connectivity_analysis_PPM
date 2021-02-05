@@ -1,0 +1,26 @@
+#! /bin/csh -f
+
+#Usage: editWM subjectFolder
+
+set sub = $argv[1]
+set bin = /data/perlman/moochie/user_data/CamachoCat/5YOP/5yop/fs_scripts
+setenv SUBJECTS_DIR /data/perlman/moochie/user_data/CamachoCat/5YOP/proc/hcp_proc/${sub}/T1w
+
+if( -e $SUBJECTS_DIR/$sub ) then        		
+	echo 
+	echo "found subject"
+	echo
+	echo "Using "$SUBJECTS_DIR "/" $sub
+	echo
+		tkmedit $sub brainmask.mgz lh.white -aux wm.mgz -aux-surface rh.white -tcl $bin/tkmedit_WMedit.tcl
+
+else
+	echo " Could not find "$sub"."
+    exit 1;
+endif
+
+echo ""
+echo ""
+echo "Who's awesome? You're awesome!"
+echo ""
+echo ""

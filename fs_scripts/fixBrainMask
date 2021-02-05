@@ -1,0 +1,39 @@
+#! /bin/csh -f
+#
+#usage: fixBrainMask [folderName]
+#This script enables you to 1) remove dura/skull and 2)add back in missing chunks of brain.
+
+set sub = $argv[1]
+set bin = /data/perlman/moochie/user_data/CamachoCat/5YOP/5yop/fs_scripts
+setenv SUBJECTS_DIR /data/perlman/moochie/user_data/CamachoCat/5YOP/proc/hcp_proc/${sub}/T1w
+
+echo
+echo
+echo "--- ********* INSTRUCTIONS  **********  ---"
+echo ""
+echo "---> Adjust Radius in Tools -> Brush Info"
+echo "---> Middle click: paint in missing brain"
+echo "---> Right click: erase dura/skull/eyes"
+echo ""
+echo "---! Be sure to check all views!"
+echo "---> when done: File -> Save Main Volume"
+echo ""
+echo "--- **********************************  ---"
+echo
+
+if (-e $SUBJECTS_DIR/$sub) then
+	echo "Found " $sub " in " $SUBJECTS_DIR
+endif
+
+tkmedit $sub brainmask.mgz -aux T1.mgz -tcl $bin/tkmedit_BMedit.tcl
+
+echo ""
+echo ""
+echo "Want to see an awesome person?"
+echo "Go to the bathroom and look above the sink!"
+echo ""
+echo ""
+
+
+
+                                   

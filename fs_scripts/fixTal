@@ -1,0 +1,41 @@
+#! /bin/csh -f
+#
+#usage: fixTal [folderName]
+#This script enables you to 1) fix the Talairach registration and 2) redo the skullstrip
+
+set sub = $argv[1]
+setenv SUBJECTS_DIR /Users/dendrite/Desktop/Jay/freesurfer
+      		
+echo 
+echo "found subject"
+echo
+echo "Using "$SUBJECTS_DIR "/" $sub
+echo
+echo
+echo
+echo "--- ********* INSTRUCTIONS  **********  ---"
+echo ""	
+echo ""
+echo "---! Be sure to check all views!"
+echo "---> "
+echo ""
+echo "--- **********************************  ---"
+echo
+echo
+tkregister2 --mgz --s $sub --fstal 
+echo
+echo "Wait 15 seconds to redo skullstrip or hit CTL+C to cancel."
+sleep 15
+echo
+echo
+echo
+
+recon-all -s $sub -autorecon1 -clean-bm
+
+if (-e $SUBJECTS_DIR/$sub/mri/brainmask.mgz) then
+	echo
+	echo
+	echo
+	echo "Don't forget to check the brainmask quality!"
+	echo "If the new brainmask looks good, be sure to run autorecon2 to regenerate the surfaces."
+endif

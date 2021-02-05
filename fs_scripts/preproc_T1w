@@ -1,0 +1,30 @@
+#! /bin/csh
+
+# Usage: preproc_T1w subjectFolder [subjectFolder subjectFolder...]
+# subjectFolder =  the subject's folder name (e.g. 001-T1). Multiple can be entered at once.
+
+setenv SUBJECTS_DIR /Users/dendrite/Desktop/Jay/freesurfer
+
+
+foreach sub ($argv)
+	set raw_dir = /Users/dendrite/Desktop/Jay/raw/${sub}
+	set rawdata = ${raw_dir}.nii.gz
+
+	if (-e $rawdata) then
+		echo '****************************************************************** '
+		echo '***************** Working on subject '$sub'********************* '
+		echo '****************************************************************** '
+
+		recon-all -s ${sub} -i $rawdata -autorecon1 -gcut
+
+		echo '****************************************************************** '
+		echo '****************** finished subject '$sub'********************** '
+		echo '****************************************************************** '
+	else
+		echo
+		echo '>> WARNIING:'$sub' not found <<' 
+		echo '>> WARNIING:'$sub' not found <<' >> $SUBJECTS_DIR/log.txt
+		echo 
+	endif
+end
+
