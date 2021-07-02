@@ -5,12 +5,12 @@ SAVEHCPPIPE="${HCPPIPEDIR:-}"
 ## Environment variable for location of HCP Pipeline for the HCP Pipeline
 ## If you leave it blank, and $HCPPIPEDIR already exists in the environment,
 ## that will be used instead (via the SAVEHCPPIPE variable, defined above)
-export HCPPIPEDIR=/home/usr/camachoc/Desktop/HCPpipelines-4.1.3
+export HCPPIPEDIR=/Users/SEAlab/Desktop/HCP_pipeline/HCPpipelines-4.2.0
 
 ## Set up other environment variables
-export MSMBINDIR="${HOME}/pipeline_tools/MSM_HOCR_v2/Ubuntu"
+export MSMBINDIR="/Users/SEAlab/Desktop/MSM_HOCR_v2/MacOSX"
 export MATLAB_COMPILER_RUNTIME=/export/matlab/MCR/R2017b/v93
-export FSL_FIXDIR=/home/usr/camachoc/Desktop/HCPpipelines-4.1.3/ICAFIX
+export FSL_FIXDIR=/Users/SEAlab/Desktop/HCP_pipeline/HCPpipelines-4.2.0/ICAFIX
 # if a suitable version of wb_command is on your $PATH, CARET7DIR can be blank
 export CARET7DIR=
 
@@ -102,4 +102,3 @@ then
 fi
 
 source "$HCPPIPEDIR/global/scripts/finish_hcpsetup.shlib"
-
